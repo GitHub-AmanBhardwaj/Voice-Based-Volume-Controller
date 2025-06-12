@@ -29,7 +29,7 @@ with sr.Microphone() as m:
                 volume.SetMasterVolumeLevelScalar(0.1, None)
                 print(f'Command: "{text}" Done :)')
             elif 'set volume to ' in text:
-                pattern=r'set volume to (\d{1,2})'
+                pattern=r'set volume to (\d{1,2,3})'
                 match=re.search(pattern, text)
                 if match:
                     n=int(match.group(1))
