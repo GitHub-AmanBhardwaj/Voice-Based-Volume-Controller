@@ -62,22 +62,11 @@ This Python script enables users to control the system audio volume on Windows u
 4. **Exit the Script**:
    - Press the `q` key to terminate the program (`Ended` will be printed).
 
-## Code Explanation
-
-- **COM Initialization**: Uses `pythoncom.CoInitialize()` and `CoUninitialize()` to manage COM resources for `pycaw`.
-- **Audio Control**: Uses `pycaw` to access the default audio device's `IAudioEndpointVolume` interface for volume control.
-- **Speech Recognition**: Uses `speech_recognition` to listen for voice commands via the default microphone, processed by Google's Speech Recognition API.
-- **Command Processing**:
-  - Detects "volume up" and "volume down" to set fixed volume levels (100% and 10%, respectively).
-  - Uses a regex pattern (`set volume to (\d{1,2})`) to parse percentage values for "set volume to" commands.
-- **Keyboard Input**: Uses the `keyboard` library to detect the `q` key for exiting.
-- **Error Handling**: Catches exceptions for failed speech recognition, printing `Nothing Heard!` when no valid audio is detected.
 
 ## Notes
 
 - **Ambient Noise**: The commented-out `recognizer.adjust_for_ambient_noise()` can be enabled to improve speech detection in noisy environments.
 - **Limitations**:
-  - The regex pattern only matches 1- or 2-digit numbers (e.g., "set volume to 100" is not supported).
   - Requires an active internet connection for Google Speech Recognition.
   - The `keyboard` library may require administrator privileges on some systems.
 - **Troubleshooting**:
@@ -85,25 +74,3 @@ This Python script enables users to control the system audio volume on Windows u
   - Check the internet connection for Google Speech Recognition.
   - Run the script as administrator if COM or microphone access fails.
   - Update dependencies with `pip install --upgrade pycaw comtypes pywin32 speechrecognition keyboard`.
-
-## Example Output
-
-```
-Listening
-set volume to 60
-Command: "set volume to 60" Done
-Listening
-Nothing Heard!
-Listening
-Ended
-```
-
-## License
-
-This script is provided as-is, with no warranty. Use and modify it freely under the MIT License (if applicable to dependencies).
-
-## Acknowledgments
-
-- Built using the `pycaw` library ([GitHub](https://github.com/AndreMiras/pycaw)).
-- Uses Google Speech Recognition API via `speech_recognition`.
-- Inspired by the need for hands-free audio control on Windows.
